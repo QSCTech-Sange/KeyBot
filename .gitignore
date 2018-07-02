@@ -1,2 +1,5 @@
-#Python
+# Python
 *.py[cod]
+
+# data resources
+/content/GroupData.py
