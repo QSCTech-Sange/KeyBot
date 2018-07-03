@@ -3,7 +3,7 @@ import command
 import os
 
 def getPath(contacts):
-    return "data_" + contacts.groupContact.name + ".txt"
+    return "data_" + contacts.groupContact.name + ".dat"
 
 def getDict(contacts):
     dict0 = {}
