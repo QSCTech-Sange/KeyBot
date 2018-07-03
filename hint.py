@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from command import command
+import command
 
 suffix = "（提示：感叹号后无空格，每个参数前面空一格）"
 

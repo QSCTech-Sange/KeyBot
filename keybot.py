@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from content import GroupData as groupData
-from command import commandUtils, learn
-from info import contacts
+import GroupData as groupData
+import commandUtils, contacts
+import learn
 
 def SendTo(bot, contact, str1):
     bot.SendTo(contact, str1.rstrip() + " ")

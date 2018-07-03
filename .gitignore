@@ -2,4 +2,4 @@
 *.py[cod]
 
 # data resources
-/content/GroupData.py
+GroupData.py

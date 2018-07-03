@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from command import command
-from content import GradeData as d
+import command as c
+import GradeData as d
 
 groupTypeSet = {1}
 
@@ -71,7 +71,7 @@ def getGrade2(rank):
             break
     return 680 - k + 1
 
-class Command_Rank(command.command):
+class Command_Rank(c.command):
 
 	def Rank(self, contacts, content):
 	    score = int(content)
@@ -101,9 +101,9 @@ class Command_Rank(command.command):
 	    return str1
 
 	def __init__(self):
-		command.command.__init__(self, "查询排名", ["成绩"], "查询成绩在福建高考的排名", self.Rank, groupTypeSet)
+		c.command.__init__(self, "查询排名", ["成绩"], "查询成绩在福建高考的排名", self.Rank, groupTypeSet)
 
-class Command_Grade(command.command):
+class Command_Grade(c.command):
 
     def Grade(self, contacts, content):
         rank = int(content)
@@ -133,9 +133,9 @@ class Command_Grade(command.command):
         return str1
 
     def __init__(self):
-        command.command.__init__(self, "查询成绩", ["排名"], "查询指定排名的成绩", self.Grade, groupTypeSet)
+        c.command.__init__(self, "查询成绩", ["排名"], "查询指定排名的成绩", self.Grade, groupTypeSet)
 
-class Command_Num(command.command):
+class Command_Num(c.command):
 
     def Number(self, contacts, str1):
 
@@ -163,4 +163,4 @@ class Command_Num(command.command):
         return str1
 
     def __init__(self):
-        command.command.__init__(self, "查询人数", ["成绩"], "查询与该成绩重分的人数", self.Number, groupTypeSet)
+        c.command.__init__(self, "查询人数", ["成绩"], "查询与该成绩重分的人数", self.Number, groupTypeSet)

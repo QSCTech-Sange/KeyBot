@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import keybot
-from content import GroupData as groupData
+import GroupData as groupData
+import sys
 
 class contact:
 	ctype = ""
@@ -13,6 +14,7 @@ class bot:
 
 	def Stop(self):
 		print("stop")
+		sys.exit()
 
 bot1 = bot()
 

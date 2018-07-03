@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from command import grade, learn, hint
-from content import GroupData as groupData
+import grade, learn, hint
+import GroupData as groupData
 
 helper = hint.Command_Help()
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from command import command
+import command
 import os
 
 def getPath(contacts):
