@@ -80,7 +80,7 @@ def cal(n1, n2, n3, n4):
 def getProblemStr(n, clist):
 	return "第{:d}题：{:}".format(n, " ".join(clist))
 
-maxTuple = (10,12,15,20,30,50,70,100,150,200)
+maxTuple = (10,11,12,13,15,17,20,30,50,100)
 
 def newGame(contacts, n):
 	while (True):
@@ -165,6 +165,8 @@ def process(contacts, cstr):
 		express = express.replace("）", ")")
 		express = express.replace("×", "*")
 		express = express.replace("÷", "/")
+		express = express.replace("＋", "+")
+		express = express.replace("－", "-")
 		express = express.replace(" ", "")
 
 		l = express.replace("+", " ").replace("-", " ").replace("*", " ").replace("/", " ")\
