@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-import grade, learn, hint
+import grade, learn, hint, point24
 import GroupData as groupData
 
 helper = hint.Command_Help()
 
 CommandList = [\
-	grade.Command_Rank(), \
-	grade.Command_Grade(), \
-	grade.Command_Num(), \
-	learn.Command_Learn(), \
-	learn.Command_Forget(), \
-
+	grade.Command_Rank(), 
+	grade.Command_Grade(), 
+	grade.Command_Num(), 
+	learn.Command_Learn(), 
+	learn.Command_Forget(), 
+	point24.Command_24(),
 	# add new command here
 	
 	helper
@@ -39,13 +39,14 @@ def match(content, contacts):
 		length = len(com.cArgs)
 		if matchTitle(content, com.cContent) and permission(contacts.groupContact, com.cGroupType):
 			if length != 0:
-				try:
+#				try:
 					args = [strList[i] for i in range(1, length)] + [" ".join(strList[length:])]
 					if len(args) != length or not args[0]:
 						raise IndexError("")
 					return com.cAction(contacts, *args)
-				except Exception:
-					return '参数错误！正确的指令是："' + com.cDocument + '"' + hint.suffix
+#				except Exception as Argument:
+#					print(Argument)
+#					return '参数错误！正确的指令是："' + com.cDocument + '"' + hint.suffix
 			else:
 				return com.cAction(contacts)
 	return None

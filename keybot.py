@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import GroupData as groupData
 import commandUtils, contacts
-import learn
+import learn, point24
 
 def SendTo(bot, contact, str1):
     bot.SendTo(contact, str1.rstrip() + " ")
@@ -19,6 +19,10 @@ def onQQMessage(bot, contact, member, content):
         str1 = commandUtils.match(content, cons)
         if str1 != None:
             SendTo(bot, contact, str1)
+        elif point24.isPlaying(cons):
+            str1 = point24.process(cons, content)
+            if str1 != None:
+                SendTo(bot, contact, str1)
         else:
             res = learn.readStr(cons, content)
             if res != 0:
