@@ -39,14 +39,14 @@ def match(content, contacts):
 		length = len(com.cArgs)
 		if matchTitle(content, com.cContent) and permission(contacts.groupContact, com.cGroupType):
 			if length != 0:
-#				try:
+				try:
 					args = [strList[i] for i in range(1, length)] + [" ".join(strList[length:])]
 					if len(args) != length or not args[0]:
 						raise IndexError("")
 					return com.cAction(contacts, *args)
-#				except Exception as Argument:
-#					print(Argument)
-#					return '参数错误！正确的指令是："' + com.cDocument + '"' + hint.suffix
+				except Exception as Argument:
+					print(Argument)
+					return '参数错误！正确的指令是："' + com.cDocument + '"' + hint.suffix
 			else:
 				return com.cAction(contacts)
 	return None

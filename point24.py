@@ -61,7 +61,7 @@ def cal(n1, n2, n3, n4):
 		except:
 			return False
 
-	numlist = [n1, n2, n3, n4]
+	numlist = [float(n1), float(n2), float(n3), float(n4)]
 	permutation = list(itertools.permutations(numlist, 4))
 	op = list(itertools.product("+-*/", repeat=3))
 	count = 0
@@ -72,15 +72,19 @@ def cal(n1, n2, n3, n4):
 			for e in exps:
 				str1 = e.format(*ex)
 				if check(str1):
+					ex = [ex[i] if i % 2 == 1 else int(ex[i]) for i in range(0,7)]
+					str1 = e.format(*ex)
 					return str1
 	return None
 
 def getProblemStr(n, clist):
 	return "第{:d}题：{:}".format(n, " ".join(clist))
 
-def newGame(contacts):
+maxTuple = (10,12,15,20,30,50,70,100,150,200)
+
+def newGame(contacts, n):
 	while (True):
-		a, b, c, d = random.randint(1,30), random.randint(1,30), random.randint(1,30), random.randint(1,30)
+		a, b, c, d = random.randint(1,maxTuple[n-1]), random.randint(1,maxTuple[n-1]), random.randint(1,maxTuple[n-1]), random.randint(1,maxTuple[n-1])
 		sa, sb, sc, sd = str(a), str(b), str(c), str(d)
 		if cal(a, b, c, d) != None:
 			setProblem(contacts, (sa, sb, sc, sd))
@@ -97,7 +101,7 @@ def nextGame(contacts):
 			str1 = "游戏结束！"
 		gameOver(contacts)
 	else:
-		numList = newGame(contacts)
+		numList = newGame(contacts, int(getDict(contacts)[KEY_NUM]))
 		str1 = getProblemStr(int(getDict(contacts)[KEY_NUM]), numList)
 	return str1
 
@@ -109,7 +113,7 @@ class Command_24(c.command):
 		if problemList != ["-1"]:
 			return '游戏正在进行中！题目：' + " ".join(problemList) + '\n' + suffix
 
-		sa, sb, sc, sd = newGame(contacts)
+		sa, sb, sc, sd = newGame(contacts, 1)
 		return ('24点游戏规则：bot在群里公布十道题目。玩家用上题目给的所有数字，\
 使用加减乘除或括号组成表达式计算出24，并直接群里发送表达式。每个人都可以参与抢答，最先回答正确结果\
 者得一分。题目保证存在一个解。\n' + suffix + "\n" + getProblemStr(1, (sa, sb, sc, sd)))	
@@ -174,12 +178,15 @@ def process(contacts, cstr):
 			return None
 
 		try:
+			name = contacts.memberContact.name
 			if eval(express) == 24.0:
+				if name == "keybot":
+					return "虽然回答正确了，但是匿名用户是没有分的哦！\n" + nextGame(contacts)
 				playerDict = dict0.get(KEY_PLAYER, {})
-				name = contacts.memberContact.name
 				playerDict[name] = str(int(playerDict.get(name, 0)) + 1)
 				dict0[KEY_PLAYER] = playerDict
 				saveDict(contacts, dict0)
+
 				return "恭喜 @" + name + " 回答正确，得一分！\n" + nextGame(contacts)
 		except:
 			return None
