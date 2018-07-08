@@ -144,6 +144,25 @@ def answer(contacts):
 		str1 = "答案： " + ans + "\n" + nextGame(contacts)
 		return str1
 
+def convert(express):
+	expList = list(express)
+	i = 0
+	flag = True
+	while i < len(expList):
+		if expList[i].isnumeric() and \
+		(i + 1 == len(expList) or not expList[i+1].isnumeric() and expList[i+1] != '.'):
+			if flag:
+				expList.insert(i + 1, '.')
+				expList.insert(i + 2, '0')
+				i += 3
+				continue
+		elif expList[i] == '.':
+			flag = False
+		else:
+			flag = True
+		i += 1
+	return ''.join(expList)
+
 def process(contacts, cstr):
 	dict0 = getDict(contacts)
 	if cstr.startswith("!答案") or cstr.startswith("！答案"):
@@ -181,7 +200,7 @@ def process(contacts, cstr):
 
 		try:
 			name = contacts.memberContact.name
-			if eval(express) == 24.0:
+			if eval(convert(express)) == 24.0:
 				if name == "keybot":
 					return "虽然回答正确了，但是匿名用户是没有分的哦！\n" + nextGame(contacts)
 				playerDict = dict0.get(KEY_PLAYER, {})
@@ -191,4 +210,5 @@ def process(contacts, cstr):
 
 				return "恭喜 @" + name + " 回答正确，得一分！\n" + nextGame(contacts)
 		except:
-			return None
+			return 
+None
