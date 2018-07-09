@@ -3,4 +3,5 @@
 
 # data resources
 GroupData.py
+fileName.py
 *.dat

@@ -3,12 +3,12 @@ import itertools
 import command as c
 import random
 import time
+import fileName
 
 GroupType = {0}
 
 import os
 
-fileName = ""
 KEY_PROBLEM = "problem"
 KEY_TIME = "time"
 KEY_PLAYER = "player"
@@ -18,7 +18,7 @@ suffix = '游戏中支持的指令：\n“!答案”：查看该题答案并进�
 
 
 def getPath(contacts):
-    return "24_{:}.dat".format(contacts.groupContact.name)
+    return fileName.point24_Name + "24_{:}.dat".format(contacts.groupContact.name)
 
 def getDict(contacts):
     dict0 = {}
@@ -149,8 +149,8 @@ def convert(express):
 	i = 0
 	flag = True
 	while i < len(expList):
-		if expList[i].isnumeric() and \
-		(i + 1 == len(expList) or not expList[i+1].isnumeric() and expList[i+1] != '.'):
+		if expList[i].isdigit() and \
+		(i + 1 == len(expList) or not expList[i+1].isdigit() and expList[i+1] != '.'):
 			if flag:
 				expList.insert(i + 1, '.')
 				expList.insert(i + 2, '0')
@@ -209,6 +209,7 @@ def process(contacts, cstr):
 				saveDict(contacts, dict0)
 
 				return "恭喜 @" + name + " 回答正确，得一分！\n" + nextGame(contacts)
-		except:
+		except Exception as arg:
+			print(arg)
 			return 
 None

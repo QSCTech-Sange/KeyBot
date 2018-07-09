@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import command
 import os
+import fileName
 
 def getPath(contacts):
-    return "data_" + contacts.groupContact.name + ".dat"
+    return fileName.learn_Name + "data_" + contacts.groupContact.name + ".dat"
 
 def getDict(contacts):
     dict0 = {}
